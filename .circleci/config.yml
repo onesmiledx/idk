@@ -26,8 +26,10 @@ jobs:
           command: "PATH=~/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo"
       - run:
           name: "Repo init"
-          command: "mkdir los21 && cd los21 && git config --global color.ui false && git config --global user.name onesmiledx && git config --global user.email beksultanbazuov@gmail.com && repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --depth=1 --git-lfs && repo sync --force-sync"
-
+          command: "mkdir los21 && cd los21 && git config --global color.ui false && git config --global user.name onesmiledx && git config --global user.email beksultanbazuov@gmail.com && repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --depth=1 --git-lfs && git clone https://github.com/samsung-mt6765-devs/local_manifests .repo/local_manifests && repo sync --force-sync"
+      - run:
+          name: "Start build"
+          command: "source build/envsetup.sh && lunch lineage_a10s-ap2a-userdebug && mka bacon"
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
 workflows:
