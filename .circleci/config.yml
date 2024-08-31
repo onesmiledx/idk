@@ -29,7 +29,7 @@ jobs:
           command: "mkdir los21 && cd los21 && git config --global color.ui false && git config --global user.name onesmiledx && git config --global user.email beksultanbazuov@gmail.com && repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --depth=1 --git-lfs && git clone https://github.com/samsung-mt6765-devs/local_manifests .repo/local_manifests && repo sync --force-sync -j36"
       - run:
           name: "Start build"
-          command: "cd /home/circleci/project/los21 && rm -rf .repo && source build/envsetup.sh && lunch lineage_a10s-userdebug && mka bacon -j36"
+          command: "cd /home/circleci/project/los21 && rm -rf .repo && source build/envsetup.sh && lunch lineage_a10s-ap2a-userdebug && mka bacon -j36"
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
 workflows:
