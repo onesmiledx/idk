@@ -23,7 +23,10 @@ jobs:
           command: "sudo apt update -y && sudo apt-get update -y && sudo apt upgrade -y && sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-gtk3-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev -y"
       - run:
           name: "Prepare repo"
-          command: "mkdir ~/bin && PATH=~/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo"
+          command: "PATH=~/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo"
+      - run:
+          name: "Repo init"
+          command: "mkdir los21 && cd los21 && git config --global color.ui false && git config --global user.name "onesmiledx" && git config --global user.email "beksultanbazuov@gmail.com" && repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --depth=1 --git-lfs && repo sync --force-sync"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
