@@ -26,14 +26,14 @@ jobs:
           command: "neofetch && git-lfs install && df -h && PATH=~/bin:$PATH && curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo"
       - run:
           name: "Repo init"
-          command: "mkdir los21 && cd los21 && git config --global color.ui false && git config --global user.name onesmiledx && git config --global user.email beksultanbazuov@gmail.com && repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --depth=1 --git-lfs && git clone https://github.com/samsung-mt6765-devs/local_manifests .repo/local_manifests && repo sync --force-sync -j36"
+          command: "mkdir pos && cd pos && git config --global color.ui false && git config --global user.name onesmiledx && git config --global user.email beksultanbazuov@gmail.com && repo init -u https://github.com/PixelOS-AOSP/manifest.git -b  --depth=1 --git-lfs && git clone https://github.com/onesmiledx/local_manifest .repo/local_manifests && repo sync --force-sync -j36"
       - run:
           name: "Start build"
-          command: "cd /home/circleci/project/los21 && rm -rf .repo && source build/envsetup.sh && lunch lineage_a10s-ap2a-userdebug && mka bacon -j36"
+          command: "cd /home/circleci/project/pos && rm -rf .repo && source build/envsetup.sh && lunch aosp_a71-ap2a-userdebug && mka bacon -j36"
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  lineage-21-build: # This is the name of the workflow, feel free to change it to better match your workflow.
+  pos-build: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
